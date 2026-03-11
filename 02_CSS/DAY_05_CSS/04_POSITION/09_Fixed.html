@@ -48,6 +48,9 @@
 
             transition: .3s;
             background-color: green;
+
+            position: relative;
+            z-index: 1;
         }
 
         .wrapper>header>nav>.main-menu>li {
@@ -121,10 +124,27 @@
         /* layout-main */
         .wrapper>main {}
 
-        .wrapper>main>section {}
-
+        .wrapper>main>section {height: 500px;}
+        .wrapper>main>section:nth-child(1) {background-color: red;}
+        .wrapper>main>section:nth-child(2) {background-color: orange;}
+        .wrapper>main>section:nth-child(3) {background-color: yellow;}
+        .wrapper>main>section:nth-child(4) {background-color: green;}
+        .wrapper>main>section:nth-child(5) {background-color: blue;}
+        
         /* layout-footer */
         .wrapper>footer {}
+
+        /* bedge */
+        .bedge-item{
+            position: fixed;
+            z-index: 5;
+            right: 15px;
+            bottom: 0;
+            width: 150px;
+            height: 300px;
+            border-radius: 10px;
+            background-color: cadetblue;
+        }
     </style>
 </head>
 
@@ -186,9 +206,18 @@
         </header>
         <main>
             <section></section>
+            <section></section>
+            <section></section>
+            <section></section>
+            <section></section>
         </main>
         <footer></footer>
     </div>
+
+    <!-- bedge -->
+    <div class="bedge-item"></div>
+
+
 </body>
 
 </html>

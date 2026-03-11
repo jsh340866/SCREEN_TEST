@@ -42,14 +42,21 @@
 
         .parent>.son:nth-child(3) {
             position: fixed;
-            left: 211px;
+            left: 210px;
             top: 251px;
         }
 
         .parent>.son:nth-child(4) {
             position: sticky;
-            left: 400px;
-            top: 0px;
+            /* 가로스크롤이 있을때 적용 */
+            left: 0px;
+
+            /* 세로스크롤이 잇을때 적용 */
+            /* 상단에서 100px 띄우고 고정 */
+            top: 150px;
+
+            margin-left: 399px;
+            margin-top: -102px;
         }
     </style>
 </head>

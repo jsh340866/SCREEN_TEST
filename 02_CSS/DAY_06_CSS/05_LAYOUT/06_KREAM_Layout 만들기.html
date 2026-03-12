@@ -12,7 +12,7 @@
     .material-symbols-outlined {
       font-variation-settings:
         'FILL' 0,
-        'wght' 200,
+        'wght' 220,
         'GRAD' 0,
         'opsz' 24
     }
@@ -48,7 +48,10 @@
     .wrapper {}
 
     /* layout-header */
-    .wrapper>header {}
+    .wrapper>header {
+      border-bottom: 1px solid lightgrey;
+      margin-bottom: 10px;
+    }
 
     .wrapper>header>.top-header {}
 
@@ -85,7 +88,6 @@
 
     .wrapper>header>nav>.nav-top>.left>img {
       width: 120px;
-      height: 20px;
     }
 
     .wrapper>header>nav>.nav-top>.right {
@@ -142,7 +144,8 @@
     .wrapper>header>nav>.nav-top>.right>.nav-icon>ul>li {
       padding: 10px;
     }
-    .wrapper>header>nav>.nav-top>.right>.nav-icon>ul>li:last-child{
+
+    .wrapper>header>nav>.nav-top>.right>.nav-icon>ul>li:last-child {
       padding-right: 0;
     }
 
@@ -152,17 +155,72 @@
     }
 
     .wrapper>header>nav>.nav-top>.right>.nav-icon>ul>li>a>span {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
     }
 
 
 
-    .wrapper>header>nav>.nav-bottom {}
+    .wrapper>header>nav>.nav-bottom {
+      /* border: 1px solid; */
+      height: 40px;
+    }
+
+    .wrapper>header>nav>.nav-bottom>ul {
+      /* border: 1px solid; */
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      height: 100%;
+
+    }
+
+    .wrapper>header>nav>.nav-bottom>ul>li {
+      /* border: 1px solid; */
+      padding: 5px 15px;
+      padding-bottom: 0;
+      height: 100%;
+    }
+
+    .wrapper>header>nav>.nav-bottom>ul>li:first-child {
+      padding-left: 0;
+    }
+
+    .wrapper>header>nav>.nav-bottom>ul>li>a {
+      display: block;
+    }
+
+    .wrapper>header>nav>.nav-bottom>ul>li>a:hover {
+      border-bottom: 2px solid;
+      height: 100%;
+    }
 
     /* layout-main */
     .wrapper>main {}
 
-    .wrapper>main>section {}
+    .wrapper>main>section {
+      min-height: 250px;
+      /* border: 1px solid; */
+      padding: 40px 0;
+    }
+
+    .wrapper>main>section.banner {
+      margin-top: 30px;
+      height: 480px;
+      border-radius: 20px;
+      background-color: lightgray;
+    }
+
+    .wrapper>main>section.items.good {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .wrapper>main>section.items.good>.item {
+      border: 1px solid;
+      min-height: 120px;
+    }
 
     /* layout-footer */
     .wrapper>footer {}
@@ -173,9 +231,9 @@
 
   <!-- .wrapper>header>.top-header+nav^main>section^footer -->
 
-  <div class="wrapper layout-1280">
+  <div class="wrapper">
     <header>
-      <div class="top-header">
+      <div class="top-header layout-1280">
         <ul>
           <li><a href="javascript:void(0)">고객센터</a></li>
           <li><a href="javascript:void(0)">마이페이지</a></li>
@@ -184,7 +242,7 @@
           <li><a href="javascript:void(0)">로그인</a></li>
         </ul>
       </div>
-      <nav>
+      <nav class="layout-1280">
         <div class="nav-top">
           <div class="left logo">
             <img src="./logo.svg" alt="">
@@ -225,11 +283,43 @@
             </div>
           </div>
         </div>
-        <div class="nav-bottom"></div>
+        <div class="nav-bottom">
+          <ul>
+            <li><a href="javascript:void(0)">산산기어26s</a></li>
+            <li><a href="javascript:void(0)">추천</a></li>
+            <li><a href="javascript:void(0)">봄맞이</a></li>
+            <li><a href="javascript:void(0)">신상</a></li>
+            <li><a href="javascript:void(0)">뷰티</a></li>
+            <li><a href="javascript:void(0)">럭셔리</a></li>
+            <li><a href="javascript:void(0)">랭킹</a></li>
+            <li><a href="javascript:void(0)">중고</a></li>
+            <li><a href="javascript:void(0)">이벤트</a></li>
+          </ul>
+        </div>
       </nav>
     </header>
-    <main>
-      <section></section>
+    <main class="layout-1280">
+      <section class="banner">
+
+      </section>
+      <section class="items good">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">10</div>
+        <div class="item">11</div>
+        <div class="item">12</div>
+        <div class="item">13</div>
+        <div class="item">14</div>
+        <div class="item">15</div>
+        <div class="item">16</div>
+      </section>
     </main>
     <footer></footer>
   </div>

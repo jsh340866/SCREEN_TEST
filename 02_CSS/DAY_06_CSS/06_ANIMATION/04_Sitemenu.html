@@ -226,16 +226,54 @@
     .wrapper>footer {}
 
     /* sitemenu css */
-    #sitemenu>input[type="checkbox"]{
+    #sitemenu{
+      position: relative;
+    }
+    
+    #sitemenu>input[type="checkbox"] {
       display: none;
     }
-    #sitemenu>label{}
-    #sitemenu>label>span{
+
+    #sitemenu>label {
+      display: block;
+      /* border: 1px solid; */
+      cursor: pointer;
+    }
+
+    #sitemenu>label>span {
       display: block;
       width: 25px;
       height: 3px;
       margin: 5px;
       background-color: gray;
+      transition: .3s;
+    }
+
+    #sitemenu>input[type="checkbox"]:checked+label>span:nth-child(1) {
+      transform: translate(0px, 8px) rotate(45deg);
+    }
+
+    #sitemenu>input[type="checkbox"]:checked+label>span:nth-child(2) {
+      visibility: hidden;
+      transition: 0s;
+    }
+
+    #sitemenu>input[type="checkbox"]:checked+label>span:nth-child(3) {
+      transform: translate(0px, -8px) rotate(-45deg);
+    }
+
+    #sitemenu>.site-block{
+      position: absolute;
+      left: -1230px;
+      top: 50px;
+      width: 1280px;
+      height: 80vh;
+      /* border: 1px solid; */
+      background-color: orange;
+      display: none;
+    }
+    #sitemenu>input[type="checkbox"]:checked~.site-block{
+      display: block;
     }
   </style>
 </head>
@@ -277,7 +315,7 @@
                     </span>
                   </a>
                 </li>
-                
+
                 <li>
                   <a href="javascript:void(0)">
                     <span class="material-symbols-outlined">
@@ -293,6 +331,9 @@
                     <span></span>
                     <span></span>
                   </label>
+                  <div class="site-block">
+
+                  </div>
                 </li>
 
               </ul>

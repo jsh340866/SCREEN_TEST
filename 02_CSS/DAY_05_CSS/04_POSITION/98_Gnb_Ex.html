@@ -84,17 +84,23 @@
       font-size: 1.5rem;
     }
 
+
     .wrapper>header>nav {
       display: flex;
       justify-content: center;
-      height: 235px;
       align-items: center;
+      height: 235px;
+
       border: 1px solid;
       background-color: lightgray;
-      
+
     }
 
-    .wrapper>header>nav>.gps {
+    .wrapper>header>nav>.back {
+      margin-top: 80px;
+    }
+
+    .wrapper>header>nav>.back>.gps {
       width: 40px;
       height: 40px;
       margin-right: 5px;
@@ -103,29 +109,27 @@
 
     }
 
-    .wrapper>header>nav>input {
+    .wrapper>header>nav>.back>input {
       width: 280px;
       height: 40px;
       border: none;
     }
 
-    .wrapper>header>nav>.cancle {
+    .wrapper>header>nav>.back>.cancle {
       width: 35px;
       height: 40px;
-      
+
 
     }
 
-    .wrapper>header>nav>.search {
+    .wrapper>header>nav>.back>.search {
       width: 60px;
       height: 40px;
       background-color: #ff8a00;
 
     }
 
-    .wrapper>header>nav>.gps>a {
-      
-    }
+    .wrapper>header>nav>.gps>a {}
 
     .wrapper>header>nav>.text>a {}
 
@@ -137,7 +141,21 @@
       color: white;
     }
 
-    .wrapper>main {}
+    .wrapper>main {
+      margin-top: 235px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .wrapper>main>.menu {
+      width: 1050px;
+      height: 950px;
+      border: 1px solid;
+      display: flex;
+
+    }
 
     .wrapper>main>div {}
 
@@ -159,36 +177,37 @@
         </div>
       </div>
       <nav>
-
-        <button class="gps">
-          <a href="">G</a>
-        </button>
-        <input type="text">
-        <button class="cancle">
-          <a href="">x</a>
-        </button>
-        <button class="search">
-          <a href="">검색</a>
-        </button>
-
+        <div class="back">
+          <button class="gps">
+            <a href="">G</a>
+          </button>
+          <input type="text">
+          <button class="cancle">
+            <a href="">x</a>
+          </button>
+          <button class="search">
+            <a href="">검색</a>
+          </button>
+        </div>
       </nav>
     </header>
     <main>
-      <!-- <div><a href="javascript:void(0)">1 메뉴</a></div> -->
-      <div>1 메뉴<a href="javascript:void(0)">1 이미지</a></div>
-      <div>2 메뉴<a href="javascript:void(0)">2 이미지</a></div>
-      <div>3 메뉴<a href="javascript:void(0)">3 이미지</a></div>
-      <div>4 메뉴<a href="javascript:void(0)">4 이미지</a></div>
-      <div>5 메뉴<a href="javascript:void(0)">5 이미지</a></div>
-      <div>6 메뉴<a href="javascript:void(0)">6 이미지</a></div>
-      <div>7 메뉴<a href="javascript:void(0)">7 이미지</a></div>
-      <div>8 메뉴<a href="javascript:void(0)">8 이미지</a></div>
-      <div>9 메뉴<a href="javascript:void(0)">9 이미지</a></div>
-      <div>10 메뉴<a href="javascript:void(0)">10 이미지</a></div>
-      <div>11 메뉴<a href="javascript:void(0)">11 이미지</a></div>
-      <div>12 메뉴<a href="javascript:void(0)">12 이미지</a></div>
-      <div>13 메뉴<a href="javascript:void(0)">13 이미지</a></div>
-
+      <div class="menu">
+        <!-- <div><a href="javascript:void(0)">1 메뉴</a></div> -->
+        <div>1 메뉴<a href="javascript:void(0)">1 이미지</a></div>
+        <div>2 메뉴<a href="javascript:void(0)">2 이미지</a></div>
+        <div>3 메뉴<a href="javascript:void(0)">3 이미지</a></div>
+        <div>4 메뉴<a href="javascript:void(0)">4 이미지</a></div>
+        <div>5 메뉴<a href="javascript:void(0)">5 이미지</a></div>
+        <div>6 메뉴<a href="javascript:void(0)">6 이미지</a></div>
+        <div>7 메뉴<a href="javascript:void(0)">7 이미지</a></div>
+        <div>8 메뉴<a href="javascript:void(0)">8 이미지</a></div>
+        <div>9 메뉴<a href="javascript:void(0)">9 이미지</a></div>
+        <div>10 메뉴<a href="javascript:void(0)">10 이미지</a></div>
+        <div>11 메뉴<a href="javascript:void(0)">11 이미지</a></div>
+        <div>12 메뉴<a href="javascript:void(0)">12 이미지</a></div>
+        <div>13 메뉴<a href="javascript:void(0)">13 이미지</a></div>
+      </div>
     </main>
     <footer></footer>
   </div>

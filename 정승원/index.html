@@ -214,18 +214,41 @@
       
       width: 100%;
       position: absolute;
-      top: 45px;
+      top: 42px;
       left: 0;
       background-color: white;
       border-radius: 5px;
+      z-index: 10;
       
-      /* display: none; */
+      display: none;
     }
-  
-    .wrapper>header>nav>.back>.nav-right>.dropbox>ul {}
+    .wrapper>header>nav>.back>.nav-right:hover>.dropbox {
+      display: block;
+    }
 
-    .wrapper>header>nav>.back>.nav-right>.dropbox>ul>li {}
+    
+    .wrapper>header>nav>.back>.nav-right>.dropbox>ul {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      /* border: 1px solid ; */
 
+    }
+
+    .wrapper>header>nav>.back>.nav-right>.dropbox>ul>li {
+      height: 40px;
+      /* border: 1px solid; */
+      /* line-height: 45px; */
+      padding: 10px;
+      color: #4d4d4d;
+    }
+    .wrapper>header>nav>.back>.nav-right>.dropbox>ul>li:first-child {
+      border-bottom: 1px solid rgba(77, 77, 77, 0.5);
+      
+    }
+
+    
 
     .wrapper>main {
       display: flex;
@@ -476,11 +499,13 @@
             <button class="search">
               <a href="">검색</a>
             </button>
+            
+            
             <div class="dropbox">
               <ul>
                 <li>현재 위치로 설정합니다.</li>
-                <li>123</li>
-                <li>1234</li>
+                <li>주--------------------소1</li>
+                <li>주--------------------소2</li>
               </ul>
             </div>
           </div>

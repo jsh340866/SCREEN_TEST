@@ -126,12 +126,17 @@
         })
 
         Object.entries(catList).forEach((item)=>{
-            console.log('item',item);
+            // console.log('item',item);
             const optionEl = document.createElement('option');
             optionEl.innerHTML = `${item[0]} | ${item[1]}`;
             catRestorant.appendChild(optionEl);
         })
         
+        // 이벤트 처리
+        catRestorant.addEventListener('change',(e)=>{
+            console.log(e.target);
+        })
+
 
 
         // step-2

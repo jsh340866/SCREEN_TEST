@@ -166,7 +166,7 @@
       // console.log('dragedNode_classList', dragedNode.classList[0]);
       newDivEl.classList.add("item", `${dragedNode.classList[0]}`);
 
-      //마우스 우클릭시 이동모드 처리
+      //마우스 down(누를때) 이동모드 처리
       newDivEl.addEventListener('mousedown', movingHandler);
 
       boardEl.appendChild(newDivEl);

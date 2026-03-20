@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 300px;
+      height: 200px;
+      border: 20px solid;
+      font-size: 3rem;
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <div class="d1">
+    <span>0</span>
+  </div>
+  <hr />
+  <div class="d2">
+
+  </div>
+  <hr />
+  <div class="d3">
+
+  </div>
+  <hr />
+
+  <script>
+
+    const d1El = document.querySelector('.d1');
+    var cnt = 0;
+    d1El.addEventListener('click', (e) => {
+      console.log(e);
+      cnt++;
+      d1El.querySelector('span').innerHTML = cnt;
+    });
+
+    // 클로저함수
+    function clickHandler() {
+      // 상태변수
+      let cnt = 0;
+      // Setter
+      function setCnt(n) {
+        if (n == null || n == undefined) {
+          cnt++;
+        }
+        else {
+          cnt = n;
+        }
+      }
+      // Getter
+      function getCnt() {
+        return cnt;
+      }
+      return { "setCnt": setCnt, "getCnt": getCnt };
+    }
+    const clickFuncs = clickHandler();
+
+    // d2El
+    const d2El = document.querySelector('.d2');
+    d2El.addEventListener('click', (e) => {
+      // console.log('d2El',this);
+      clickFuncs.setCnt();
+      d2El.innerHTML = `<h1>${clickFuncs.getCnt()}</h1>`;
+    })
+    /*  
+    mouseenter  : 마우스 포인터가 특정영역내로 진입시
+    mouseover   : 마우스 포인터가 특정영역내에 머무를시
+    mouseleave  : 마우스 포인터가 특정영역밖으로 나갈때
+    click       : 마우스 1회 클릭
+    dblclick    : 마우스 2회 클릭
+    contextmenu : 마우스 우클릭
+    */
+
+    // d3El
+    // const d3El = document.querySelector('.d3');
+    // d3El.addEventListener('mouseenter', () => {d3El.innerHTML='<h4>mouseenter</h4>'})
+    // d3El.addEventListener('mouseleave', () => {d3El.innerHTML='<h4>mouseleave</h4>'})
+    // d3El.addEventListener('mouseover', () => {d3El.innerHTML='<h4>mouseover</h4>'})
+    // d3El.addEventListener('dblclick', () => {d3El.innerHTML='<h4>dbclick</h4>'})
+    // d3El.addEventListener('contextmenu', (e) => {d3El.innerHTML='<h4>contextmenu</h4>'})
+    
+    
+
+
+  </script>
+
+</body>
+
+</html>

@@ -5,133 +5,227 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: gray;
+    }
+
+    body {
+      margin: 0
+    }
+
+    ;
+
+    .wrapper {}
+
+    .wrapper>header {}
+
+    .wrapper>main {
+      height: 100vh;
+    }
+
+    .wrapper>main>section {
+      height: 100%;
+      display: flex;
+      justify-content: left;
+      align-items: start;
+      gap: 15px;
+    }
+
+    .wrapper>main>section>aside {
+      border: 1px solid;
+      height: 100%;
+      width: 200px;
+    }
+
+    .wrapper>main>section>aside>ul.items {
+      padding: 10px;
+    }
+
+    .wrapper>main>section>aside>ul.items>li {
+      height: 35px;
+      text-align: center;
+      line-height: 35px;
+      border: 1px solid;
+      margin-bottom: 5px;
+
+    }
+
+    .wrapper>main>section>aside>ul.items>li>a {
+      display: block;
+    }
+
+    .wrapper>main>section>article {
+      border: 1px solid;
+      height: 100%;
+      width: calc(100% - 200px);
+      position: relative;
+      left: 0;
+      top: 0;
+    }
+
+    .wrapper>main>section>article .item {
+      border: 1px solid;
+      position: absolute;
+
+      min-width: 100px;
+      min-height: 100px;
+    }
+
+    .wrapper>main>section>article .item-style-1 {
+      background-color: red;
+      /* border-radius: 50%; */
+      box-shadow: 5px 5px 5px gray;
+    }
+
+    .wrapper>main>section>article .item-style-2 {
+      background-color: orange;
+    }
+
+    .wrapper>main>section>article .item-style-3 {
+      background-color: green;
+    }
+
+    .wrapper>main>section>article .item-style-4 {
+      background-color: royalblue;
+    }
+  </style>
 </head>
 
 <body>
 
+
+  <div class="wrapper">
+    <header></header>
+    <main>
+      <section>
+        <aside>
+
+          <ul class="items">
+            <li><a href="javascript:void(0)" draggable="true" class="item-style-1">ITEM_1</a></li>
+            <li><a href="javascript:void(0)" draggable="true" class="item-style-2">ITEM_2</a></li>
+            <li><a href="javascript:void(0)" draggable="true" class="item-style-3">ITEM_3</a></li>
+            <li><a href="javascript:void(0)" draggable="true" class="item-style-4">ITEM_4</a></li>
+          </ul>
+
+        </aside>
+        <article class="board">
+
+        </article>
+      </section>
+      <footer></footer>
+    </main>
+  </div>
+
+
   <script>
+    const liEls = document.querySelectorAll('.items li');
 
-    // 콜백함수(CALL BACK)
-    // 함수를 호출하는 시점이 바뀌어진 형태의 함수
-    // 기존방식 : 사용자(개발자)가 함수를 직접정의 -> 정의된 함수를 호출(CALL)하여 결과를 반환받는 방식
-    // CALLBACK : 콜백함수에 인자로 로직이 담긴 함수를(함수주소) 전달하여 콜백함수로부터 처리된 결과를
-    // 반환받는 방식
+    // 상태 정보
+    var isMoving = false;   //현재 우클릭 상태여부
+    var offsetX = 0;        //현재 마우스의 오프셋 x 위치 확인
+    var offsetY = 0;        //현재 마우스의 오프셋 y 위치 확인
+    var targetNode = false; //isMoving 상태일때 타겟정보
 
-    //함수정의
-    // function func1(n1,n2) {
-    //   console.log("func1(n1,n2)...Call!!");
-    //   return n1+n2;
-    // }
-    // //함수실행(CALL)
-    // const r1 = func1(10,20); // Call-by-value : 값(value)전달을 통한 함수 직접 실행(CALL)
-    // console.log("r1",r1);
+    // 상태정보 저장
+    let dragedNode = null;      // ITEM 드래그 시작시 저장
+    liEls.forEach((liEl) => {
+      // console.log("liEl",liEl);
+      liEl.addEventListener('dragstart', (e) => {
+        // console.log('dragstart',e.target);
+        dragedNode = e.target;
+      });
+    })
 
-    // //콜백함수(n1,n2 : value, logic : function함수명(함수의위치, 메모리주소 : 참조값))
-    // function callbackFunc(n1,n2,logic){
-    //   console.log("callbakcFunc start -----------");
-    //   const result = logic(n1,n2); // 외부로부터 받은 함수를 내부에서 CALL
-    //   console.log("result", result);
-    //   console.log("callbakcFunc end ------------");
-    // }
-    // callbackFunc(100,200,func1)   // 콜백함수의 CALL
-    // console.log("======================================");
-    // callbackFunc(10,20, (n1,n2)=>{return n2-n1;});
-    // console.log("======================================");
-    // callbackFunc(500,300, (n1,n2)=>{return (n1>n2)?n1-n2:n2-n1;});
+    const boardEl = document.querySelector('.board');
+    boardEl.addEventListener('dragover', (e) => { e.preventDefault(); })
+    boardEl.addEventListener('drop', (e) => {
+      e.preventDefault();
+      // console.log("drop",e);
+      // console.log("dragedNode",dragedNode);
+      // console.log("ClientX",e.offsetX);
+      // console.log("ClientY",e.offsetY);
 
+      const newDivEl = document.createElement("div");
 
-    //Callback함수로 Map 만들기
-    // const arr = [
-    //   { "id": "111", "name": "티모", age: 555, "addr": "대구" },
-    //   { "id": "222", "name": "렝가", age: 333, "addr": "인천" },
-    //   { "id": "333", "name": "워윅", age: 222, "addr": "부산" },
-    //   { "id": "444", "name": "문도박사", age: 111, "addr": "울산" },
-    //   { "id": "555", "name": "이즈리얼", age: 99, "addr": "창원" }
-    // ]
+      newDivEl.setAttribute('style', `left:${e.offsetX}px;top:${e.offsetY}px`);
 
-    // //제공되는 배열함수 map
-    // const r1 = arr.map((item)=>{return {"id":item.id, "addr":item.addr};})
-    // console.log('r1',r1);
+      // 드래그 아이템별 각기 다른 class 추가(스타일부여)
+      // console.log('dragedNode_classList', dragedNode.classList[0]);
+      newDivEl.classList.add("item", `${dragedNode.classList[0]}`);
 
-    // //콜백함수로 만든 유사 map
-    // function customMap(array,func) {
-    //   console.log(array);
-    //   let newArray = [];
-    //   for (let i = 0; i<array.length;i++){
-    //     // console.log(array[i])
-    //     const newItem = func(array[i]);
-    //     console.log(newItem);
-    //     newArray.push(newItem);
-    //   }
-    //   return newArray;
-    // }
-    // //콜백함수 실행
-    // const r2 = customMap(arr,(item)=>{return {"id":item.id, "addr":item.addr};});
-    // console.log("r2",r2);
+      //마우스 우클릭시 이동모드 처리
+      newDivEl.addEventListener('mousedown', movingHandler);
 
-    //미니문제
-    // const students = [
-    //     { name: "철수", score: 85 },
-    //     { name: "영희", score: 42 },
-    //     { name: "민수", score: 91 },
-    //     { name: "지현", score: 55 },
-    //     { name: "태호", score: 73 }
-    // ];
+      boardEl.appendChild(newDivEl);
+    })
 
-    // function customMap2(students, cutline, func) {
-    //     let newArray = [];
-    //     for (let i = 0; i < students.length; i++) {
-    //         console.log(students[i]);
-    //         const passItem = func(students[i], cutline);
-    //         if (passItem) newArray.push(passItem);
-    //     }
-    //     return newArray;
-    // }
-    // // 여기에 작성하세요(점수가 N점 이상인 학생만 pass)
-    // const result = customMap2(students, 60, (item, cutline) => { return (item.score >= cutline) && { 'name': item.name, 'grade': 'pass' } });
-    // console.log("result", result);
-    // // 기대 출력
-    // // [ { name: '철수', grade: 'pass' },
-    // //   { name: '민수', grade: 'pass' },
-    // //   { name: '태호', grade: 'pass' } ]        
+    //boardEl.addEventListener('',(e)=>{})
 
+    //----------------------------------------------------
+    // 마우스 우클릭시 이동모드 변환
+    //----------------------------------------------------
+    boardEl.addEventListener('contextmenu', (e) => { e.preventDefault(); })
+    //상태정보 저장
 
+    const movingHandler = (e) => {
+      console.log(e.button);
+      if (e.button == 2) //우 클릭시
+      {
+        if (!isMoving) {
+          //옮기는 시작 위치에서 우클릭
+          isMoving = true;
+          e.target.style.opacity = ".6";
 
-    // CLOUSURE + CALLBACK
-
-    const arr = [
-      { "id": "111", "name": "티모", age: 555, "addr": "대구" },
-      { "id": "222", "name": "렝가", age: 333, "addr": "인천" },
-      { "id": "333", "name": "워윅", age: 222, "addr": "부산" },
-      { "id": "444", "name": "문도박사", age: 111, "addr": "울산" },
-      { "id": "555", "name": "이즈리얼", age: 99, "addr": "창원" }
-    ]
-
-    //콜백함수로 반든 유사 map + clousure
-    function customMap(array) {
-      //State(클로저 대상)
-      let newArray = [];
-
-      //Inner Function
-      function map(func) {
-        for (let i = 0; i < array.length; i++) {
-          // console.log(array[i]);
-          const newItem = func(array[i])
-          console.log(newItem);
-          newArray.push(newItem);
+          targetNode = e.target;
+          //마우스좌표 저장 이벤트 추가
+          boardEl.addEventListener('mousemove', mouseXYsaveHandler);
         }
-        return newArray;
-      }
-      function a() { }
-      function b() { }
-      function c() { }
-      return { "map": map, "a": a, "b": b, "c": c }
+        else {
+          //옮기는 끝 위치에서 우클릭
+          isMoving = false;
+          e.target.style.opacity = "1";
 
+          targetNode = null;
+          //마우스좌표 저장 이벤트 제거
+          boardEl.removeEventListener('mousemove', mouseXYsaveHandler);
+        }
+      }
+    };
+
+    //마우스 이동 처리 핸들러
+    const mouseXYsaveHandler = (e) => {
+      // console.log('mouseXYsaveHandler',e);
+      // 타겟노드의 위치 및 크기 가져오기(뷰포트 기준 )
+      // 반환값 : {left,top,right,bottom,width,height...}
+      const rect = targetNode.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      console.log(centerX, centerY);
+
+
+
+      console.log(rect);
+      targetNode.style.left = `${e.clientX - 200 - 20}px`;
+      targetNode.style.top = `${e.clientY - 10}px`;
     }
-    //콜백함수 실행
-    const clousureFunc = customMap();   //map 함수 리턴
-    console.log(customMap(arr).map((item) => { return { "id": item.id, "addr": item.addr } }));
   </script>
+
 </body>
 
 </html>

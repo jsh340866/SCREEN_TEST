@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    td {
+      width: 50px;
+      height: 50px;
+      border: 1px solid gray;
+    }
+
+    input {
+      width: 90%;
+      height: 100%;
+      outline: none;
+      border: 0px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <input id="rownum" placeholder="행의개수입력" style="width:200px;">
+  <input id="colnum" placeholder="열의개수입력" style="width:200px;">
+  <button onclick="makemap()">생성</button>
+  <hr>
+  <table id="tbl">
+    <tbody>
+      <!-- <td></td> -->
+    </tbody>
+  </table>
+  <script>
+
+    //State 
+    let curX = 0;
+    let curY = 0;
+    let selectedNode = null;
+
+    const selectedStyle = (xPos, yPos) => {
+      //
+
+    }
+    const deSelectedStyle = (node) => {
+      //
+    }
+
+    const makemap = (e) => {
+      //input row/col 확인
+      const row = document.querySelector('#rownum').value;  //tr개수
+      const col = document.querySelector('#colnum').value;  //td개수
+      const tbodyEl = document.querySelector('#tbl tbody');
+
+      //기존표 삭제
+      while(tbodyEl.firstChild){
+        tbodyEl.removeChild(tbodyEl.firstChild);s
+      }
+      
+      //표생성
+      for(let i=0;i<row;i++){
+        const trEl = document.createElement('tr');
+        for(let j=0;j<col;j++){
+          const tdEl = document.createElement('td');
+          
+          trEl.appendChild(tdEl);
+        }
+        tbodyEl.appendChild(trEl);
+      }
+    }
+    
+    </script>
+</body>
+
+</html>

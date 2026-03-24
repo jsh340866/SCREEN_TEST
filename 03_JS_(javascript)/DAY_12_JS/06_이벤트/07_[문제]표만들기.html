@@ -138,10 +138,10 @@
         deSelectedStyle(selectedNode);
 
         // if(col < maxCol){
-          //   col++;
-          // }
+        //   col++;
+        // }
         //col 을 1 증가
-        (col<maxCol)?col++:col;
+        (col < maxCol) ? col++ : col;
         selectedStyle(row, col);
         console.log("RIGHT");
 
@@ -154,10 +154,10 @@
         deSelectedStyle(selectedNode);
 
         // if (row > 0) {
-          //   row--;
-          // }
+        //   row--;
+        // }
         //row 1 감소
-        (Number(row) - 1 < 0)? row = 0: row--;
+        (Number(row) - 1 < 0) ? row = 0 : row--;
         selectedStyle(row, col);
         console.log("UP");
 
@@ -170,10 +170,10 @@
         deSelectedStyle(selectedNode);
 
         // if (row < maxRow) {
-          //   row++;
-          // }
+        //   row++;
+        // }
         //row 1 증가
-        (Number(row)+1 > maxRow)? row = maxRow: row++;
+        (Number(row) + 1 > maxRow) ? row = maxRow : row++;
         selectedStyle(row, col);
         console.log("DOWN");
 

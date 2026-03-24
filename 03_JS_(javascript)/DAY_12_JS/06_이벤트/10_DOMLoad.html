@@ -13,11 +13,11 @@
       border-radius: 50%;
       position: absolute;
       left: 0;
-      right: 0;
       top: 0;
+      right: 0;
       bottom: 0;
       margin: auto;
-      transition: .3s;
+      transition: .5s;
     }
 
     .ball-1280px {
@@ -27,14 +27,14 @@
     }
 
     .ball-860px {
-      width: 500px;
-      height: 500px;
+      width: 250px;
+      height: 250px;
       background-color: royalblue;
     }
 
     .ball-380px {
-      width: 500px;
-      height: 500px;
+      width: 70px;
+      height: 70px;
       background-color: green;
     }
   </style>
@@ -42,26 +42,36 @@
 
 <body>
 
-  <div class="ball ball-1280px"></div>
+  <div class="ball"></div>
 
   <script>
-
+    //---------------------
+    //Load이벤트
+    //---------------------
+    //DOMContentLoaded  : 최초 Document 로드시 1회 동작(HTML이 전부 파싱된 이후 DOM객체가 완성되고 나서 실행,
+    //CSS,외부파일 로드여부와는 관계없다)
+    //load              : 최초 Document 로드시 1회 동작(모든 리소스가 완전히 로드된 이후 실행)
 
 
     window.addEventListener('DOMContentLoaded', (e) => {
 
       const ballEl = document.querySelector('.ball');
-      
+      // console.log('init',e);
+
       // 초기 화면사이즈별 반응 처리
-      if (window.innerrWidth >= 1280) {
+      if (window.innerWidth >= 1280) {
         ballEl.classList.add('ball-1280px')
       }
-      else if (window.innerWidth >= 380) {
+      else if (window.innerWidth >= 380)    //380<=window.outerWidth < 1280
+      {
         ballEl.classList.add('ball-860px')
       }
       else {
         ballEl.classList.add('ball-380px')
       }
+
+
+
 
 
       // RESIZE 반응형 처리
@@ -76,7 +86,8 @@
           ballEl.classList.remove('ball-860px', 'ball-380px')
           ballEl.classList.add('ball-1280px')
         }
-        else if (window.outerWidth >= 380) {
+        else if (window.outerWidth >= 380)    //380<=window.outerWidth < 1280
+        {
           ballEl.classList.remove('ball-1280px', 'ball-380px')
           ballEl.classList.add('ball-860px')
         }
@@ -89,7 +100,10 @@
     });
 
 
+
+
   </script>
+
 </body>
 
 </html>

@@ -74,6 +74,15 @@
       </tr>
     </thead>
     <tbody>
+      <!-- 탬플릿 -->
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>
+          <a href="javascript:void(0)">삭제</a>
+        </td>
+      </tr>
 
     </tbody>
 
@@ -97,50 +106,7 @@
 
     
 
-    
-    btnEl.addEventListener('click',(e)=>{
-      const username = usernameEl.value;
-      const age = ageEl.value;
-      const address = addressEl.value;
-
-      // if(!isValid()){
-      //   return false;
-      // }
-
-      createNode(username,age,address)
-      usernameEl.value='';
-      ageEl.value='';
-      addressEl.value='';
-    })
-
-    function isValid() {
-      return true
-    }
-
-    function createNode(username,age,address) {
-      const nameBoxEl = document.createElement('th');
-      const ageBoxEl = document.createElement('th');
-      const addressBoxEl = document.createElement('th');
-      const delBoxEl = document.createElement('th');
-      
-
-      nameBoxEl.innerHTML=username;
-      ageBoxEl.innerHTML=age;
-      addressBoxEl.innerHTML=address;
-      delBoxEl.innerHTML='x';
-
-      delBoxEl.addEventListener('click',(e)=>{
-        // console.log(e.target.parentNode);
-        const del = e.target.parentNode;
-        del.remove();
-      })
-
-      tableBodyEl.prepend(nameBoxEl);
-      tableBodyEl.appendChild(ageBoxEl);
-      tableBodyEl.appendChild(addressBoxEl);
-      tableBodyEl.appendChild(delBoxEl);
-      
-    }
+  
 
   </script>
 </body>

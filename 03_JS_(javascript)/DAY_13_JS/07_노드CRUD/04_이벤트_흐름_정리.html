@@ -33,6 +33,10 @@
     <!-- 위에 주석 처리값을 스크립트로 추가 -->
   </div>
 
+
+
+  
+
   <script>
     const insertValueEl = document.querySelector('.insert-value');
     const btnInsertEl = document.querySelector('.btn-insert');
@@ -52,7 +56,7 @@
     });
 
     btnInsertEl.addEventListener("click", (e) => {
-      
+
       const value = insertValueEl.value; //1. insertValueEl.value 값 가져오기
       if (!isValid(value))               //2. 유효성검증
         return;

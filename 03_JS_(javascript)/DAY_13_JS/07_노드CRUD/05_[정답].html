@@ -61,7 +61,7 @@
     <input name="username" placeholder="이름을 입력하세요">
     <input name="age" placeholder="나이를 입력하세요">
     <input name="address" placeholder="주소를 입력하세요">
-    <button class="btn" >입력</button>
+    <button class="btn">입력</button>
   </form>
   <hr>
   <table>
@@ -75,14 +75,14 @@
     </thead>
     <tbody>
       <!-- 탬플릿 -->
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
+      <!-- <tr>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
         <td>
           <a href="javascript:void(0)">삭제</a>
         </td>
-      </tr>
+      </tr> -->
 
     </tbody>
 
@@ -104,9 +104,33 @@
     const addressEl = formEl.address;
     const tableBodyEl = document.querySelector('table tbody');
 
+    btnEl.addEventListener('click',(e)=>{
+
+      // 1. 유효성검증
+      if(!isValid(formEl)){
+        return ;
+      }
+      // 2. form's input value 가져오기 - form 그대로 가져오면됨
+      // 3. 새노드생성 -> tableBodyEl append/prepend
+      createNode(formEl);
+      // 4. form's input 초기화
+      init(formEl);
+      
+    })
+
+    function isValid(formEl){return true};
+    function createNode(formEl){
+      const td1El = document.createElement('td');
+      const td2El = document.createElement('td');
+      const td3El = document.createElement('td');
+      const td4El = document.createElement('td');
+      const td1InputEl = document.createElement('input');
+      const td2InputEl = document.createElement('input');
+      const td3InputEl = document.createElement('input');
+    };
+    function init(formEl){};
     
 
-  
 
   </script>
 </body>

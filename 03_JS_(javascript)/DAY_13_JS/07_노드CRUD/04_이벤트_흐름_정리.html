@@ -30,6 +30,7 @@
         <a href="javascripts:void(0)">삭제</a>
       </div>
     </div> -->
+    <!-- 위에 주석 처리값을 스크립트로 추가 -->
   </div>
 
   <script>
@@ -51,6 +52,7 @@
     });
 
     btnInsertEl.addEventListener("click", (e) => {
+      
       const value = insertValueEl.value; //1. insertValueEl.value 값 가져오기
       if (!isValid(value))               //2. 유효성검증
         return;
@@ -62,12 +64,12 @@
     });
 
     function isValid(value) {
-      const regex = /^[^\d].*$/;
+      const regex = /^[\d].*$/;
       if(value.trim() ==='' || value.trim()===null){
         alert("내용을 입력하세요");
         return false;
       }
-      if(!regex.test(value)){
+      if(regex.test(value)){
         alert("첫번째오는 단어는 문자여야합니다.")
         return false;
       }
@@ -90,9 +92,16 @@
       inputEl.setAttribute('readonly', true);
       aEl.setAttribute('href', 'javascript:void(0)');
 
-      //데이터 삽입 작업
+      //데이터 삽입
       aEl.innerHTML = "삭제";
       inputEl.value = text;
+
+      //이벤트 처리(삭제버튼)
+      aEl.addEventListener('click',(e)=>{
+        // console.log(e.target.parentNode.parentNode);
+        const itemEl = e.target.parentNode.parentNode;
+        itemEl.remove();
+      })
 
       //노드간 연결
       leftEl.appendChild(inputEl);

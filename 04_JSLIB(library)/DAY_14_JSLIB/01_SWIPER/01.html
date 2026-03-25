@@ -46,6 +46,37 @@
 
     .wrapper>main>section {}
 
+    .wrapper>main>section.main-banner {}
+
+    .wrapper>main>section.main-banner>.swiper {
+      width: 100%;
+      height: 720px;
+      position: relative;
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper {
+      height: 100%;
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide {
+      height: 100%;
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide>a {
+      height: 100%;
+      width: 100%;
+      border: 1px solid;
+      display: block;
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide>a>img {}
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-button-prev {}
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-button-next {}
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-button-pagination {}
+
     /* */
     .wrapper>footer {}
   </style>
@@ -68,13 +99,29 @@
           <!-- Slides -->
           <div class="swiper-slide">
             <a href="javascript:void(0)">
-              <img src="/04_JSLIB(library)/DAY_14_JSLIB/01_SWIPER/images/1.jpg" alt="">
+              <img src="./images/1.jpg" alt="">
             </a>
           </div>
-          <div class="swiper-slide">Slide 2</div>
-          <div class="swiper-slide">Slide 3</div>
-          <div class="swiper-slide">Slide 4</div>
-          <div class="swiper-slide">Slide 5</div>
+          <div class="swiper-slide">
+            <a href="javascript:void(0)">
+              <img src="./images/2.jpg" alt="">
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="javascript:void(0)">
+              <img src="./images/3.jpg" alt="">
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="javascript:void(0)">
+              <img src="./images/4.jpg" alt="">
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="javascript:void(0)">
+              <img src="./images/5.jpg" alt="">
+            </a>
+          </div>
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
@@ -94,7 +141,30 @@
   </main>
   <footer></footer>
 
-  <script></script>
+  <script>
+    const mainBannerSwiper = new Swiper('.wrapper>main>section.main-banner>.swiper', {
+      // Optional parameters
+      direction: 'horizontal',    //vertical : 수직, horizontal : 수평
+      loop: true,
+
+      // If we need pagination
+      pagination: {
+        el: '.wrapper>main>section.main-banner>.swiper>.swiper-pagination',
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: '.wrapper>main>section.main-banner>.swiper>.swiper-button-next',
+        prevEl: '.wrapper>main>section.main-banner>.swiper>.swiper-button-prev',
+      },
+
+      // And if we need scrollbar
+      // scrollbar: {
+      //   el: '.swiper-scrollbar',
+      // },
+    });
+
+  </script>
 </body>
 
 </html>

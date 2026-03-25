@@ -250,10 +250,12 @@
       if(isPlay){
         playToggleBtn.innerHTML='pause';
         isPlay = false;
+        mainBannerSwiper.autoplay.stop();
       }
       else{
         playToggleBtn.innerHTML='play_arrow';
         isPlay = true;
+        mainBannerSwiper.autoplay.start();
       }
     });
 

@@ -9,6 +9,7 @@
   <!-- SWIPER CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -26,22 +27,20 @@
     }
 
     a {
-      margin: 0;
-      padding: 0;
       text-decoration: none;
       color: black;
     }
 
     .wrapper {}
 
-    /* */
+    /*  */
     .wrapper>header {}
 
     .wrapper>header>.top-header {}
 
     .wrapper>header>nav {}
 
-    /* */
+    /*  */
     .wrapper>main {}
 
     .wrapper>main>section {}
@@ -52,15 +51,37 @@
       width: 100%;
       height: 720px;
       position: relative;
+      /* border : 5px solid red; */
+
+
+
     }
 
-    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper {}
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper {
+      height: 100%;
+    }
 
-    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide {}
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide {
+      height: 100%;
+    }
 
-    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide>a {}
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide>a {
+      display: block;
+      width: 100%;
+      height: 100%;
 
-    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide>a>img {}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide>a>img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+    }
 
     .wrapper>main>section.main-banner>.swiper>.swiper-button-prev,
     .wrapper>main>section.main-banner>.swiper>.swiper-button-next {
@@ -70,21 +91,37 @@
       position: absolute;
       border-radius: 50%;
       color: white;
-      top: 86%;
+      top: 600px;
+
     }
 
     .wrapper>main>section.main-banner>.swiper>.swiper-button-prev {
       left: 25%;
     }
+
     .wrapper>main>section.main-banner>.swiper>.swiper-button-next {
-      left: calc(25% + 180px);
+      left: calc(25% + 120px);
     }
 
-    .wrapper>main>section.main-banner>.swiper>.swiper-button-pagination {}
 
-    /* */
+    .wrapper>main>section.main-banner>.swiper>.swiper-pagination {
+      color: white;
+      font-size: 1.5rem;
+      position: absolute;
+      top: 580px;
+      left: calc(25% + 25px);
+      width: 100px;
+      height: auto;
+    }
+
+    .swiper-pagination-current {
+      color: orange;
+    }
+
+    /*  */
     .wrapper>footer {}
   </style>
+
 </head>
 
 <body>
@@ -93,7 +130,6 @@
   <div class="wrapper">
     <div class="top-header"></div>
     <nav></nav>
-
     <main>
       <!-- BANNER SECTION -->
       <section class="main-banner">
@@ -122,11 +158,7 @@
                 <img src="./images/4.jpg" alt="">
               </a>
             </div>
-            <div class="swiper-slide">
-              <a href="javascript:void(0)">
-                <img src="./images/5.jpg" alt="">
-              </a>
-            </div>
+
           </div>
           <!-- If we need pagination -->
           <div class="swiper-pagination"></div>
@@ -146,23 +178,26 @@
     </main>
     <footer></footer>
   </div>
+
+
+
   <script>
     const mainBannerSwiper = new Swiper('.main-banner>.swiper', {
       // Optional parameters
-      direction: 'horizontal',    //vertical : 수직, horizontal : 수평
+      direction: 'horizontal',  //vertical:수직 , horizontal(수평)
       autoplay: {
         delay: 2000,
-        pauseOnMouseEnter: true,
+        // pauseOnMouseEnter:true,
       },
       loop: true,
-      effect: "slide", // slide(기본), fade, scroll, cube, coverflow, flip
+      effect: "slide", // slide(기본), fade , scroll, cube , coverflow , flip
       mousewheel: true,
 
       // If we need pagination
       pagination: {
         el: '.main-banner>.swiper>.swiper-pagination',
         clickable: true,
-        type: 'progressbar', //bullets(기본), fraction, progressbar, 
+        type: 'fraction', //bullets(기본), fraction , progressbar
       },
 
       // Navigation arrows
@@ -173,11 +208,14 @@
 
       // And if we need scrollbar
       // scrollbar: {
-      //   el: '.swiper-scrollbar',
+      //     el: '.swiper-scrollbar',
       // },
     });
 
+    console.log(mainBannerSwiper);
+
   </script>
+
 </body>
 
 </html>

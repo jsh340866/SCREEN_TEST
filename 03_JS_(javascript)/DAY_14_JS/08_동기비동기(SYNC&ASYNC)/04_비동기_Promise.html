@@ -48,21 +48,21 @@
     const sub1ThreadEl = document.querySelector('.sub1-thread');
     const sub2ThreadEl = document.querySelector('.sub2-thread');
 
-    // // Promise 비동기 처리 객체
-    // new Promise((resolve, reject) => {
-    //   //비동기처리로직
-    //   setTimeout(() => {
-    //     const isSuccess = false;
-    //     if (isSuccess) {
-    //       resolve("작업 성공! : 서버로부터 데이터 수신완료!");
-    //     }
-    //     else {
-    //       reject("작업 실패 : 문제상황확인 해보세요~..");
-    //     }
-    //   }, 3000);
-    // })
-    //   .then((response) => { console.log("response", response) })   // 비동기 작업 성공시(resolve)
-    //   .catch((error) => { console.log("error", error) })           // 비동기 작업 실패시(reject)
+    // Promise 비동기 처리 객체
+    new Promise((resolve, reject) => {
+      //비동기처리로직
+      setTimeout(() => {
+        const isSuccess = false;
+        if (isSuccess) {
+          resolve("작업 성공! : 서버로부터 데이터 수신완료!");
+        }
+        else {
+          reject("작업 실패 : 문제상황확인 해보세요~..");
+        }
+      }, 3000);
+    })
+      .then((response) => { console.log("response", response) })   // 비동기 작업 성공시(resolve)
+      .catch((error) => { console.log("error", error) })           // 비동기 작업 실패시(reject)
 
 
     let cnt = 0;

@@ -61,7 +61,7 @@
     <input name="username" placeholder="이름을 입력하세요">
     <input name="age" placeholder="나이를 입력하세요">
     <input name="address" placeholder="주소를 입력하세요">
-    <button class="btn" >입력</button>
+    <button class="btn" type="submit">입력</button>
   </form>
   <hr>
   <table>
@@ -78,8 +78,6 @@
     </tbody>
 
   </table>
-
-  </div>
   <script>
     // form의 기본기능은 비활성화합니다
     //입력버튼을 눌렀을때 table의 tbody에 입력된 (이름/나이/주소/삭제버튼)이 생성될수 있도록합니다
@@ -88,59 +86,53 @@
 
     //특정행의 위치를 위로이동/아래로 이동이 가능하도록 합니 다(나중에)
 
-    const btnEl = document.querySelector('.btn');
-    const formEl = document.joinForm;
-    const usernameEl = formEl.username;
-    const ageEl = formEl.age;
-    const addressEl = formEl.address;
+    const formEl = document.forms.joinForm;
     const tableBodyEl = document.querySelector('table tbody');
 
-    
-
-    
-    btnEl.addEventListener('click',(e)=>{
-      const username = usernameEl.value;
-      const age = ageEl.value;
-      const address = addressEl.value;
-
-      // if(!isValid()){
-      //   return false;
-      // }
-
-      createNode(username,age,address)
-      usernameEl.value='';
-      ageEl.value='';
-      addressEl.value='';
-    })
-
-    function isValid() {
-      return true
+    function getFormValues() {
+      const username = formEl.username.value.trim();
+      const age = formEl.age.value.trim();
+      const address = formEl.address.value.trim();
+      return { username, age, address };
     }
 
-    function createNode(username,age,address) {
-      const nameBoxEl = document.createElement('th');
-      const ageBoxEl = document.createElement('th');
-      const addressBoxEl = document.createElement('th');
-      const delBoxEl = document.createElement('th');
-      
-
-      nameBoxEl.innerHTML=username;
-      ageBoxEl.innerHTML=age;
-      addressBoxEl.innerHTML=address;
-      delBoxEl.innerHTML='x';
-
-      delBoxEl.addEventListener('click',(e)=>{
-        // console.log(e.target.parentNode);
-        const del = e.target.parentNode;
-        del.remove();
-      })
-
-      tableBodyEl.prepend(nameBoxEl);
-      tableBodyEl.appendChild(ageBoxEl);
-      tableBodyEl.appendChild(addressBoxEl);
-      tableBodyEl.appendChild(delBoxEl);
-      
+    function resetForm() {
+      formEl.reset();
+      formEl.username.focus();
     }
+
+    function isValid({ username, age, address }) {
+      if (!username || !age || !address) return false;
+      if (!Number.isFinite(Number(age))) return false;
+      return true;
+    }
+
+    function createRow({ username, age, address }) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${username}</td>
+        <td>${age}</td>
+        <td>${address}</td>
+        <td><button type="button" data-action="delete" class="btn">x</button></td>
+      `;
+      return tr;
+    }
+
+    formEl.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const values = getFormValues();
+      if (!isValid(values)) return;
+
+      tableBodyEl.prepend(createRow(values));
+      resetForm();
+    });
+
+    tableBodyEl.addEventListener('click', (e) => {
+      const delBtn = e.target.closest('[data-action="delete"]');
+      if (!delBtn) return;
+      delBtn.closest('tr')?.remove();
+    });
 
   </script>
 </body>

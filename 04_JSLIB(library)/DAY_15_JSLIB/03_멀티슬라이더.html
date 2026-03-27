@@ -72,7 +72,9 @@
     /*  */
     .wrapper>main {}
 
-    .wrapper>main>section {}
+    .wrapper>main>section {
+      margin-bottom: 25px;
+    }
 
     .wrapper>main>section.main-banner {}
 
@@ -175,8 +177,69 @@
       color: orange;
     }
 
+    /* multi-slider section */
+    main>.multi-slider {
+      height: 500px;
+      border: 1px solid;
+    }
+
+    main>.multi-slider>.swiper {
+      height: 100%;
+    }
+
+    main>.multi-slider>.swiper>.swiper-wrapper {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide {
+      height: 250px;
+      width: 250px;
+      border: 1px solid;
+      transition: .3s;
+    }
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide>a{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 5rem;
+    }
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide-active {
+      background-color: orange;
+      transform: scale(1.5);
+      z-index: 2;
+    }
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide-prev {
+      background-color: orange;
+      /* opacity: .5; */
+      transform: scale(1.2);
+      z-index: 1;
+    }
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide-next {
+      background-color: orange;
+      transform: scale(1.2);
+      /* opacity: .5; */
+      z-index: 1;
+    }
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide>a {}
+
+    main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide>a>img {}
+
+    main>.multi-slider>.swiper>.swiper-button-prev {}
+
+    main>.multi-slider>.swiper>.swiper-button-next {}
+
     /*  */
-    .wrapper>footer {}
+    .wrapper>footer {
+      height: 350px;
+      background-color: black;
+    }
   </style>
 
 </head>
@@ -255,7 +318,46 @@
         </div>
       </section>
 
-      <section></section>
+      <!-- MULTISLIDER -->
+      <section class="multi-slider">
+
+        <!-- Slider main container -->
+        <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <!-- .swiper-slide*20>a[href="javascript:voide(0)"]>{$} -->
+            <div class="swiper-slide"><a href="javascript:voide(0)">1</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">2</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">3</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">4</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">5</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">6</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">7</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">8</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">9</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">10</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">11</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">12</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">13</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">14</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">15</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">16</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">17</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">18</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">19</a></div>
+            <div class="swiper-slide"><a href="javascript:voide(0)">20</a></div>
+
+          </div>
+          <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+
+        </div>
+
+
+      </section>
+
       <section></section>
       <section></section>
     </main>
@@ -323,6 +425,71 @@
       },
       loop: true,
     });
+
+    //Multi-Silder Swiper
+    const multiSliderSwiper = new Swiper('main>.multi-slider>.swiper', {
+      // Optional parameters
+      direction: 'horizontal',
+      loop: true,
+      autoplay: {
+        delay: 2000
+      },
+      // multislider option
+      slidesPerView: 4,      // 한 화면에 보여줄 슬라이더 갯수
+      centeredSlides: true,  // 가운데 슬라이더 기준을 만듬
+      spaceBetween: 20,    // 슬라이드 사이 여백
+
+
+      // Navigation arrows
+      navigation: {
+        nextEl: 'main>.multi-slider>.swiper>.swiper-button-next',
+        prevEl: 'main>.multi-slider>.swiper>.swiper-button-prev',
+      },
+
+    });
+
+    // MultiSlider Mouse Event
+    const multiSliderEl = document.querySelector('main>.multi-slider>.swiper');
+    multiSliderEl.addEventListener('mouseover', () => { multiSliderSwiper.autoplay.stop(); });
+
+    multiSliderEl.addEventListener('mouseleave', () => { multiSliderSwiper.autoplay.start(); });
+
+    //
+    // MultiSlider 주변 slide 클릭시 중심위치 이동
+    let allSwiperSilder = document.querySelectorAll('.multi-slider .swiper .swiper-slide')//배열OBJECT반환
+    allSwiperSilder = Array.from(allSwiperSilder)
+    allSwiperSilder.forEach(item => {
+
+      item.addEventListener('click', () => {
+        let idx = -1
+        if (!item.classList.contains('swiper-slide-active')) {
+          //클릭한 swiper-slide가 active가 아닌경우
+          allSwiperSilder.forEach(el => {
+            el.classList.remove('swiper-slide-active');
+            el.classList.remove('swiper-slide-prev')
+            el.classList.remove('swiper-slide-next')
+          })
+          item.classList.add('swiper-slide-active')
+          idx = Array.from(allSwiperSilder).indexOf(item);
+          console.log('idx', idx)
+          if (idx === 0) {
+            //슬라이드중 첫번째
+            allSwiperSilder[allSwiperSilder.length - 1].classList.add('swiper-slide-prev')
+            allSwiperSilder[idx + 1].classList.add('swiper-slide-next')
+          }
+          else if (idx == allSwiperSilder.length - 1) {
+            //슬라이드중 마지막번째
+            allSwiperSilder[idx - 1].classList.add('swiper-slide-prev')
+            allSwiperSilder[0].classList.add('swiper-slide-next')
+          }
+          else {
+            allSwiperSilder[idx - 1].classList.add('swiper-slide-prev')
+            allSwiperSilder[idx + 1].classList.add('swiper-slide-next')
+          }
+          multiSliderSwiper.slideTo(idx);
+        }
+      })
+    })
 
   </script>
 
